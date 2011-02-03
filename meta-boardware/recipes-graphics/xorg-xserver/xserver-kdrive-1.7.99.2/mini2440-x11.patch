@@ -1,0 +1,47 @@
+Index: xorg-server-1.7.99.2/hw/kdrive/src/kmode.c 
+===================================================================
+--- xorg-server-1.7.99.2.orig/hw/kdrive/src/kmode.c	2011-01-18 14:08:42.223507001 -0200
++++ xorg-server-1.7.99.2/hw/kdrive/src/kmode.c	2011-01-18 14:05:09.511507002 -0200
+@@ -29,6 +29,13 @@
+ const KdMonitorTiming  kdMonitorTimings[] = {
+     /*	H	V	Hz	KHz */
+ 		/*  FP	    BP	    BLANK   POLARITY */
++	
++	/*3.5" Toppoly LCD*/
++
++    {   240,    320,    57,         0,
++                    0,      0,      0,     KdSyncNegative,
++                    0,      0,      0,     KdSyncNegative,
++    },
+ 
+ 	/* Treo 650 */
+ 
+@@ -105,7 +112,7 @@
+ 		    1,	    20,	    24,	    KdSyncNegative, /* 72.809 */
+     },
+     /* DEFAULT */
+-#define MONITOR_TIMING_DEFAULT	13
++#define MONITOR_TIMING_DEFAULT	0
+     {	640,	480,	60,	25175,			    /* VESA */
+ 		   16,	    48,	    160,    KdSyncNegative, /* 31.469 */
+ 		   10,	    33,	    45,	    KdSyncNegative, /* 59.940 */
+Index: xorg-server-1.7.99.2/hw/kdrive/fbdev/fbdev.c 
+===================================================================
+--- xorg-server-1.7.99.2.orig/hw/kdrive/fbdev/fbdev.c	2011-01-18 14:10:00.511507000 -0200
++++ xorg-server-1.7.99.2/hw/kdrive/fbdev/fbdev.c	2011-01-18 14:32:33.127507001 -0200
+@@ -701,13 +701,13 @@
+     priv->var.activate = FB_ACTIVATE_NOW|FB_CHANGE_CMAP_VBL;
+     
+     /* display it on the LCD */
+-    k = ioctl (priv->fd, FBIOPUT_VSCREENINFO, &priv->var);
++/*    k = ioctl (priv->fd, FBIOPUT_VSCREENINFO, &priv->var);
+     if (k < 0)
+     {
+ 	perror ("FBIOPUT_VSCREENINFO");
+ 	return FALSE;
+     }
+-    
++*/    
+     if (priv->fix.visual == FB_VISUAL_DIRECTCOLOR)
+     {
+ 	struct fb_cmap	cmap;

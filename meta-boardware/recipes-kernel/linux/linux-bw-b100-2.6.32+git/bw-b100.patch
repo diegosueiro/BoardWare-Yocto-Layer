@@ -1,0 +1,25 @@
+Index: git/arch/arm/mach-s3c2440/mach-mini2440.c 
+===================================================================
+--- git.orig/arch/arm/mach-s3c2440/mach-mini2440.c	2011-01-28 16:21:17.616548508 -0200
++++ git/arch/arm/mach-s3c2440/mach-mini2440.c	2011-01-28 16:03:49.060548508 -0200
+@@ -289,6 +289,21 @@
+ 				   S3C2410_LCDCON5_INVVFRAME |
+ 				   S3C2410_LCDCON5_PWREN),
+ 	},
++	[5] = { /* bw-b100 + 3.5" TFT + touchscreen -- Samsumg S320240 */
++                /* be sure the "power" jumper is set accordingly ! */
++                _LCD_DECLARE(
++                        7,                     /* the 3.5" runs slower */
++                        320, 28, 30, 40,        /* x timing */
++                        240, 15, 2, 1,          /* y timing */
++                        40),                    /* refresh rate */
++                .lcdcon5        = (S3C2410_LCDCON5_FRM565 |
++                                   S3C2410_LCDCON5_INVVLINE |
++                                   S3C2410_LCDCON5_INVVFRAME |
++                                   S3C2410_LCDCON5_PWREN |
++                          	   S3C2410_LCDCON5_HWSWP),
++
++        },
++
+ };
+

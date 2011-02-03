@@ -1,0 +1,12 @@
+Index: git/arch/arm/configs/mini2440_defconfig
+===================================================================
+--- git.orig/arch/arm/configs/mini2440_defconfig	2011-02-01 13:49:38.023875000 -0200
++++ git/arch/arm/configs/mini2440_defconfig	2011-02-01 13:50:06.691875000 -0200
+@@ -1406,6 +1406,7 @@
+ #
+ # USB Host Controller Drivers
+ #
++CONFIG_EmbedSky_TWO_USB_HOST=y
+ # CONFIG_USB_C67X00_HCD is not set
+ # CONFIG_USB_OXU210HP_HCD is not set
+ # CONFIG_USB_ISP116X_HCD is not set

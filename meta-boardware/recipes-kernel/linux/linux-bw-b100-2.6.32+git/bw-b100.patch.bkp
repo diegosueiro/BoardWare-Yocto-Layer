@@ -1,0 +1,76 @@
+Index: git/arch/arm/mach-s3c2440/mach-mini2440.c 
+===================================================================
+--- git.orig/arch/arm/mach-s3c2440/mach-mini2440.c	2011-01-28 16:21:17.616548508 -0200
++++ git/arch/arm/mach-s3c2440/mach-mini2440.c	2011-01-28 16:03:49.060548508 -0200
+@@ -289,6 +289,21 @@
+ 				   S3C2410_LCDCON5_INVVFRAME |
+ 				   S3C2410_LCDCON5_PWREN),
+ 	},
++	[5] = { /* bw-b100 + 3.5" TFT + touchscreen -- Samsumg S320240 */
++                /* be sure the "power" jumper is set accordingly ! */
++                _LCD_DECLARE(
++                        7,                     /* the 3.5" runs slower */
++                        320, 28, 30, 40,        /* x timing */
++                        240, 15, 2, 1,          /* y timing */
++                        40),                    /* refresh rate */
++                .lcdcon5        = (S3C2410_LCDCON5_FRM565 |
++                                   S3C2410_LCDCON5_INVVLINE |
++                                   S3C2410_LCDCON5_INVVFRAME |
++                                   S3C2410_LCDCON5_PWREN |
++                          	   S3C2410_LCDCON5_HWSWP),
++
++        },
++
+ };
+
+Index: git/drivers/usb/host/ohci-s3c2410.c
+=================================================================== 
+ /* todo - put into gpio header */
+--- git.orig/drivers/usb/host/ohci-s3c2410.c    2011-01-30 21:28:41.159430001 -0200
++++ git/drivers/usb/host/ohci-s3c2410.c 2011-01-30 21:24:36.055430000 -0200
+@@ -22,6 +22,10 @@
+ #include <linux/platform_device.h>
+ #include <linux/clk.h>
+ #include <plat/usb-control.h>
++//#ifdef CONFIG_EmbedSky_TWO_USB_HOST
++#include <mach/regs-gpio.h>
++//#endif
++
+
+ #define valid_port(idx) ((idx) == 1 || (idx) == 2)
+
+@@ -345,6 +349,15 @@
+        struct usb_hcd *hcd = NULL;
+        int retval;
+
++//#ifdef CONFIG_EmbedSky_TWO_USB_HOST
++        unsigned long reg_misccr;
++        printk("Initial EmbedSky TWO USB HOST Driver!\n");
++       reg_misccr = 0;
++        reg_misccr = readl(S3C2410_MISCCR);
++        reg_misccr = reg_misccr | S3C2410_MISCCR_USBHOST;
++        writel(reg_misccr,S3C2410_MISCCR);
++//#endif
++
+        s3c2410_usb_set_power(dev->dev.platform_data, 1, 1);
+        s3c2410_usb_set_power(dev->dev.platform_data, 2, 1);
+
+Index: git/arch/arm/configs/mini2440_defconfig
+===================================================================
+--- git.orig/arch/arm/configs/mini2440_defconfig        2011-01-30 21:31:34.535430000 -0200
++++ git/arch/arm/configs/mini2440_defconfig     2011-01-30 21:18:23.331430001 -0200
+@@ -1,4 +1,5 @@
+-utomatically generated make config: don't edit
++#
++# Automatically generated make config: don't edit
+ # Linux kernel version: 2.6.32-rc8
+ # Sun Nov 22 16:16:12 2009
+ #
+@@ -1405,6 +1406,7 @@
+ #
+ # USB Host Controller Drivers
+ #
++CONFIG_EmbedSky_TWO_USB_HOST=y
+ # CONFIG_USB_C67X00_HCD is not set
+ # CONFIG_USB_OXU210HP_HCD is not set
+ # CONFIG_USB_ISP116X_HCD is not set
