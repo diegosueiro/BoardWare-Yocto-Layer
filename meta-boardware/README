@@ -1,0 +1,9 @@
+The proposal of this document is to provide information about the
+use of Yocto Project to building embedded Linux distributions
+for BoardWare[1] products.
+
+For general information and guidelines on how to use Yocto Project,
+please go to its resources page:
+http://www.yoctoproject.org/resources
+
+[1]: www.boardware.com.br
