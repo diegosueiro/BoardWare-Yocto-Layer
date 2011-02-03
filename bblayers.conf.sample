@@ -1,0 +1,10 @@
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+LCONF_VERSION = "3"
+
+BBFILES ?= ""
+BBLAYERS = " \
+  /home/dev/yocto-repo/poky/meta \
+  /home/dev/yocto-repo/poky/meta-emenlow \
+  /home/dev/yocto-repo/poky/meta-boardware \
+  "
