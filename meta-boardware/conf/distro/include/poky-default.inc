@@ -15,10 +15,10 @@ PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}libc-initial = "${POKYLIBC}-initial"
 PREFERRED_PROVIDER_virtual/${SDK_PREFIX}libc-for-gcc-nativesdk ?= "${POKYLIBC}-nativesdk"
 
 
-GCCVERSION = "4.5.2"
-SDKGCCVERSION = "4.5.2"
-BINUVERSION = "2.20"
-GLIBCVERSION = "2.10.1"
+GCCVERSION ?= "4.5.2"
+SDKGCCVERSION ?= "4.5.2"
+BINUVERSION ?= "2.20"
+GLIBCVERSION ?= "2.10.1"
 LINUXLIBCVERSION ?= "2.6.36"
 
 # Temporary preferred version overrides for PPC
