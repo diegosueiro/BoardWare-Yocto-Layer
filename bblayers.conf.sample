@@ -4,7 +4,7 @@ LCONF_VERSION = "3"
 
 BBFILES ?= ""
 BBLAYERS = " \
-  /home/dev/yocto-repo/poky/meta \
-  /home/dev/yocto-repo/poky/meta-emenlow \
-  /home/dev/yocto-repo/poky/meta-boardware \
+  ##POKYBASE##/meta \
+  ##POKYBASE##/meta-emenlow \
+  ##POKYBASE##/meta-boardware \
   "
