@@ -1,7 +1,7 @@
 #
 # Copyright (C) 2007 OpenedHand Ltd.
 #
-IMAGE_INSTALL = "task-poky-boot ${ROOTFS_PKGMANAGE} \
+IMAGE_INSTALL = "task-poky-boot ${ROOTFS_PKGMANAGE} update-rc.d dropbear mtd-utils task-base kernel-modules \
 		 \
 		"
 
