@@ -11,7 +11,7 @@ PR="r0"
 
 SRC_URI = "git://git.denx.de/u-boot.git;branch=master;protocol=git"
 
-SRC_URI_bw-b100 = "git://repo.or.cz/u-boot-openmoko/mini2440.git;protocol=git;branch=dev-mini2440-stable \  "
+SRC_URI_bw-b100 = "git://repo.or.cz/u-boot-openmoko/mini2440.git;protocol=git;branch=dev-mini2440-stable"
 LIC_FILES_CHKSUM_bw-b100 = "file://COPYING;md5=4c6cde5df68eff615d36789dc18edd3b \
                     	    file://README;beginline=1;endline=22;md5=ad8b2e82fdb62c692f9eb646748d8fe5"
 
